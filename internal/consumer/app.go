@@ -61,15 +61,15 @@ func topMenu() {
 func doTask(in string) error {
 	switch in {
 	case "1":
-		if err := updateSetsTask(in); err != nil {
+		if err := updateSetsTask(); err != nil {
 			return err
 		}
 	case "2":
-		if err := updateCardsTask(in); err != nil {
+		if err := updateCardsTask(); err != nil {
 			return err
 		}
 	case "3":
-		if err := auditCardsTask(in); err != nil {
+		if err := auditCardsTask(); err != nil {
 			return err
 		}
 	case "0":
@@ -81,7 +81,7 @@ func doTask(in string) error {
 	return nil
 }
 
-func updateSetsTask(in string) error {
+func updateSetsTask() error {
 	log.Info().Msg("CHECKING DATABASE...")
 
 	count, err := _controller.Mongo.Count(_controller.Mongo.SetCollection, bson.M{})
@@ -109,7 +109,7 @@ func updateSetsTask(in string) error {
 	return nil
 }
 
-func updateCardsTask(in string) error {
+func updateCardsTask() error {
 	log.Info().Msg("CHECKING DATABASE...")
 
 	// Get sets from MongoDB
@@ -149,7 +149,7 @@ func updateCardsTask(in string) error {
 	return nil
 }
 
-func auditCardsTask(in string) error {
+func auditCardsTask() error {
 	log.Info().Msg("CHECKING DATABASE...")
 
 	// Get sets from MongoDB
